@@ -128,6 +128,32 @@ html[data-theme="sand"] .tbtn .lbl::after{content:"Ink"}
 .btn.ghost:hover{border-color:var(--text-3);background:var(--surface);transform:translateY(-2px)}
 .btn svg{width:16px;height:16px}
 .nav .btn{height:38px;padding:0 16px;font-size:13px}
+/* mobile menu */
+.menu-btn{
+  display:none;width:38px;height:38px;border-radius:999px;border:1px solid var(--line-strong);
+  background:transparent;color:var(--text);cursor:pointer;place-items:center;flex:none;
+  transition:border-color .2s,background-color .2s;
+}
+.menu-btn:hover{border-color:var(--text-3);background:var(--teal-soft)}
+.menu-btn svg{width:18px;height:18px}
+.menu-btn .ico-x{display:none}
+.nav.menu-open .menu-btn .ico-bars{display:none}
+.nav.menu-open .menu-btn .ico-x{display:block}
+.mobile-menu{
+  display:none;position:absolute;left:0;right:0;top:100%;
+  background:var(--bg);box-shadow:0 18px 40px rgba(0,0,0,.22);
+  border-bottom:1px solid var(--line);padding:8px clamp(20px,4vw,48px) 18px;
+  opacity:0;transform:translateY(-8px);transition:opacity .25s var(--ease),transform .25s var(--ease);
+}
+.mobile-menu a{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 0;border-top:1px solid var(--line);font-size:17px;font-weight:600;color:var(--text);
+}
+.mobile-menu a:first-child{border-top:0}
+.mobile-menu a span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--teal-ink)}
+.mobile-menu .mm-foot{display:flex;gap:10px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line)}
+.mobile-menu .mm-foot .btn{height:40px;font-size:13px}
+.nav.menu-open .mobile-menu{display:block;opacity:1;transform:none}
 
 /* ───────────────────────── hero ───────────────────────── */
 .hero{padding:clamp(56px,7vw,96px) 0 clamp(56px,7vw,88px);overflow:hidden}
@@ -308,9 +334,12 @@ footer .sig img{width:26px;height:26px;border-radius:50%;object-fit:cover;border
 @media (max-width:760px){
   body{font-size:16px}
   .links{display:none}
+  .menu-btn{display:grid}
   .nav .wrap{height:62px}
   .tbtn .lbl{display:none}
   .tbtn{padding:0 10px}
+  .nav .btn{padding:0 13px}
+  .nav .btn .btn-txt{display:none}
   .grid{grid-template-columns:1fr}
   .hero h1{font-size:clamp(46px,13vw,64px)}
   .photo .badge{right:6px}
@@ -341,12 +370,26 @@ footer .sig img{width:26px;height:26px;border-radius:50%;object-fit:cover;border
         <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         <span class="lbl"></span>
       </button>
-      <a class="btn primary" href="https://github.com/TheWoovee" target="_blank" rel="noopener">
+      <a class="btn primary" href="https://github.com/TheWoovee" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.05.78 2.12v3.15c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-        GitHub
+        <span class="btn-txt">GitHub</span>
       </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg class="ico-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ico-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Sections (mobile)">
+    <a href="#cando">What I can do <span>01</span></a>
+    <a href="#how">How I work <span>02</span></a>
+    <a href="#why">Why I build <span>03</span></a>
+    <a href="#hello">Say hello <span>05</span></a>
+    <div class="mm-foot">
+      <a class="btn primary" href="https://github.com/TheWoovee" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" href="mailto:jainu.saiyad@gmail.com">Email me</a>
+    </div>
+  </nav>
 </header>
 
 <main id="top">
@@ -578,6 +621,18 @@ footer .sig img{width:26px;height:26px;border-radius:50%;object-fit:cover;border
     root.setAttribute('data-theme',next);
     try{localStorage.setItem('woovee-theme',next);}catch(e){}
   });
+  // mobile menu
+  var nav=document.querySelector('.nav'), mbtn=document.getElementById('menuBtn'), mmenu=document.getElementById('mobileMenu');
+  function setMenu(open){
+    nav.classList.toggle('menu-open',open);
+    mbtn.setAttribute('aria-expanded',open?'true':'false');
+    mbtn.setAttribute('aria-label',open?'Close menu':'Open menu');
+  }
+  mbtn.addEventListener('click',function(e){e.stopPropagation();setMenu(!nav.classList.contains('menu-open'));});
+  mmenu.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false);});
+  document.addEventListener('click',function(e){if(nav.classList.contains('menu-open')&&!nav.contains(e.target))setMenu(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
+  window.addEventListener('resize',function(){if(window.innerWidth>760)setMenu(false);});
   // reveal on scroll
   var els=[].slice.call(document.querySelectorAll('.reveal'));
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
