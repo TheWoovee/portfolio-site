@@ -1,0 +1,13 @@
+# Original camera photo (contains EXIF GPS data) — keep local only
+IMG_*.JPG
+IMG_*.jpg
+IMG_*.jpeg
+
+# Superseded Claude Design export and local preview renders
+The Woovee Portfolio.html
+preview-*.png
+
+# Local tooling / OS noise
+.claude/
+Thumbs.db
+.DS_Store

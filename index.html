@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ink">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>The Woovee — Jainullabdeen S</title>
+<meta name="description" content="Jainullabdeen S — enterprise systems engineer turned AI-assisted product builder, based in Doha. I architect, agents build, we ship.">
+<meta property="og:title" content="The Woovee — Jainullabdeen S">
+<meta property="og:description" content="I architect. Agents build. We ship. Enterprise systems engineer turned AI-assisted product builder, Doha.">
+<meta property="og:image" content="assets/photo.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1116'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23f0b254'%3EW%3C/text%3E%3C/svg%3E">
+<script>
+(function(){try{var q=new URLSearchParams(location.search).get('theme');var t=(q==='ink'||q==='sand')?q:localStorage.getItem('woovee-theme');if(t!=='ink'&&t!=='sand'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'sand':'ink';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ───────────────────────── tokens ───────────────────────── */
+:root{
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Manrope',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --maroon:#8a1538;
+  --r-lg:22px; --r-md:14px; --r-sm:8px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --max:1180px;
+}
+html[data-theme="ink"]{
+  --bg:#0e1116; --bg-2:#121820; --surface:#141b24; --surface-2:#19222d;
+  --line:rgba(239,233,221,.10); --line-strong:rgba(239,233,221,.22);
+  --text:#efe9dd; --text-2:#b7b0a4; --text-3:#857f75;
+  --teal:#2fb7c9; --teal-ink:#5cc9d8; --teal-soft:rgba(47,183,201,.14);
+  --amber:#f0b254; --amber-ink:#f0b254; --amber-soft:rgba(240,178,84,.14);
+  --btn-bg:#efe9dd; --btn-fg:#0e1116;
+  --glow-a:rgba(47,183,201,.22); --glow-b:rgba(240,178,84,.16);
+  --shadow:0 30px 80px rgba(0,0,0,.45);
+  --card-shadow:0 1px 0 rgba(255,255,255,.03) inset;
+  --nav-bg:rgba(14,17,22,.72);
+  color-scheme:dark;
+}
+html[data-theme="sand"]{
+  --bg:#f4efe6; --bg-2:#ece6da; --surface:#fbf8f2; --surface-2:#ffffff;
+  --line:rgba(20,24,30,.10); --line-strong:rgba(20,24,30,.24);
+  --text:#14181e; --text-2:#4f4b44; --text-3:#7b756b;
+  --teal:#1a9aab; --teal-ink:#0d6f7d; --teal-soft:rgba(26,154,171,.12);
+  --amber:#f0b254; --amber-ink:#9a5b0a; --amber-soft:rgba(240,178,84,.22);
+  --btn-bg:#14181e; --btn-fg:#f4efe6;
+  --glow-a:rgba(26,154,171,.18); --glow-b:rgba(240,178,84,.28);
+  --shadow:0 30px 80px rgba(40,30,10,.18);
+  --card-shadow:0 1px 2px rgba(20,24,30,.04);
+  --nav-bg:rgba(244,239,230,.78);
+  color-scheme:light;
+}
+
+/* ───────────────────────── base ───────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  transition:background-color .35s var(--ease),color .35s var(--ease);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--amber);color:#14181e}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--mono)}
+.serif{font-family:var(--serif)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--teal-ink);display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--teal)}
+h2.title{
+  font-family:var(--serif);font-weight:400;letter-spacing:-.01em;
+  font-size:clamp(36px,4.6vw,58px);line-height:1.04;max-width:14em;
+}
+h2.title em{font-style:italic;color:var(--amber-ink)}
+.sub{color:var(--text-2);font-size:clamp(16px,1.35vw,19px);max-width:42em;margin-top:18px}
+section{padding:clamp(72px,9vw,120px) 0;position:relative}
+.rule{border:0;border-top:1px solid var(--line)}
+
+/* ───────────────────────── nav ───────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:40;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:var(--nav-bg);border-bottom:1px solid var(--line);
+  transition:background-color .35s var(--ease);
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.01em;font-size:15px}
+.brand .mark{
+  width:32px;height:32px;border-radius:9px;background:var(--text);color:var(--bg);
+  display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:21px;line-height:1;
+  padding-bottom:2px;
+}
+.links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:600;color:var(--text-2)}
+.links a{position:relative;padding:6px 0;transition:color .2s}
+.links a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--amber);transition:right .3s var(--ease)}
+.links a:hover{color:var(--text)}
+.links a:hover::after{right:0}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.tbtn{
+  display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 12px 0 10px;border-radius:999px;
+  border:1px solid var(--line-strong);background:transparent;color:var(--text);cursor:pointer;
+  font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  transition:border-color .2s,background-color .2s,transform .2s;
+}
+.tbtn:hover{border-color:var(--text-3);background:var(--teal-soft)}
+.tbtn svg{width:16px;height:16px}
+.tbtn .ico-sun,.tbtn .ico-moon{display:none}
+html[data-theme="ink"] .tbtn .ico-sun{display:block}
+html[data-theme="sand"] .tbtn .ico-moon{display:block}
+.tbtn .lbl::after{content:"Sand"}
+html[data-theme="sand"] .tbtn .lbl::after{content:"Ink"}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;height:44px;padding:0 20px;border-radius:999px;
+  font-weight:700;font-size:14px;letter-spacing:.01em;white-space:nowrap;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,border-color .2s;
+  border:1px solid transparent;
+}
+.btn.primary{background:var(--btn-bg);color:var(--btn-fg)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.btn.ghost{border-color:var(--line-strong);color:var(--text)}
+.btn.ghost:hover{border-color:var(--text-3);background:var(--surface);transform:translateY(-2px)}
+.btn svg{width:16px;height:16px}
+.nav .btn{height:38px;padding:0 16px;font-size:13px}
+
+/* ───────────────────────── hero ───────────────────────── */
+.hero{padding:clamp(56px,7vw,96px) 0 clamp(56px,7vw,88px);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero-glow{position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.hero-glow::before,.hero-glow::after{content:"";position:absolute;border-radius:50%;filter:blur(90px)}
+.hero-glow::before{width:52vw;height:52vw;max-width:760px;max-height:760px;right:-12vw;top:-14vw;background:var(--glow-a)}
+.hero-glow::after{width:40vw;height:40vw;max-width:560px;max-height:560px;left:-10vw;bottom:-20vw;background:var(--glow-b)}
+.hero h1{
+  font-family:var(--serif);font-weight:400;letter-spacing:-.015em;
+  font-size:clamp(54px,7.4vw,104px);line-height:.98;margin:6px 0 26px;
+}
+.hero h1 em{font-style:italic;color:var(--amber-ink)}
+.hero .lede{font-size:clamp(17px,1.45vw,20px);color:var(--text-2);max-width:32em}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.chip{
+  font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--text-2);
+  border:1px solid var(--line-strong);border-radius:999px;padding:7px 12px;
+  display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--surface) 60%,transparent);
+}
+.chip i{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block}
+.chip.amber i{background:var(--amber)}
+.chip.maroon i{background:var(--maroon)}
+
+.photo{position:relative;justify-self:end;width:min(100%,440px)}
+.photo .frame{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;
+  border:1px solid var(--line-strong);box-shadow:var(--shadow);background:var(--surface);
+  transform:rotate(1.2deg);transition:transform .6s var(--ease);
+}
+.photo:hover .frame{transform:rotate(0deg) scale(1.01)}
+.photo .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.photo .frame::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 62%,rgba(10,12,16,.55) 100%);
+  pointer-events:none;
+}
+.photo .outline{
+  position:absolute;inset:0;border-radius:var(--r-lg);border:1px solid var(--teal);
+  transform:rotate(-2.2deg) translate(10px,12px);opacity:.55;pointer-events:none;
+  transition:transform .6s var(--ease);
+}
+.photo:hover .outline{transform:rotate(-1deg) translate(14px,16px)}
+.photo .tag{
+  position:absolute;left:18px;bottom:18px;z-index:2;display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#efe9dd;
+  background:rgba(14,17,22,.62);border:1px solid rgba(239,233,221,.25);border-radius:999px;padding:7px 12px 7px 9px;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.photo .tag svg{width:14px;height:14px;color:var(--amber)}
+.photo .badge{
+  position:absolute;right:-10px;top:22px;z-index:2;transform:rotate(6deg);
+  background:var(--amber);color:#14181e;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;padding:8px 12px;border-radius:999px;box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+
+/* ───────────────────────── ticker ───────────────────────── */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2);overflow:hidden;padding:14px 0}
+.ticker .track{display:flex;width:max-content;animation:scroll 38s linear infinite}
+.ticker span{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--text-2);padding:0 26px;white-space:nowrap}
+.ticker b{color:var(--amber-ink);font-weight:500}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ───────────────────────── capabilities ───────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:54px}
+.card{
+  position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:28px 26px 26px;box-shadow:var(--card-shadow);overflow:hidden;
+  transition:transform .45s var(--ease),border-color .3s,box-shadow .45s var(--ease),background-color .35s;
+}
+.card::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .45s;
+  background:radial-gradient(420px 160px at 0% 0%,var(--teal-soft),transparent 70%);
+}
+.card:hover{transform:translateY(-5px);border-color:var(--line-strong);box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.card:hover::before{opacity:1}
+.card .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.card .ico{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--teal-ink);
+  background:var(--teal-soft);border:1px solid color-mix(in srgb,var(--teal) 30%,transparent);
+}
+.card .ico svg{width:20px;height:20px}
+.card .num{font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.1em}
+.card h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+.card p{color:var(--text-2);font-size:15px;line-height:1.6}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.tags span{
+  font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--text-2);
+  border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--bg);
+}
+.card.accent .ico{color:var(--amber-ink);background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 35%,transparent)}
+.card.accent::before{background:radial-gradient(420px 160px at 0% 0%,var(--amber-soft),transparent 70%)}
+
+/* ───────────────────────── how I work ───────────────────────── */
+.how{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pipe{display:flex;margin-top:56px;overflow-x:auto;padding:8px 0 18px;scrollbar-width:thin;gap:0}
+.step{flex:1 1 0;min-width:118px;position:relative;text-align:center;padding:0 6px}
+.step::before{content:"";position:absolute;top:15px;left:50%;width:100%;height:1px;background:var(--line-strong)}
+.step:last-child::before{display:none}
+.step .dot{
+  width:32px;height:32px;border-radius:50%;margin:0 auto;position:relative;z-index:1;
+  border:1px solid var(--teal);background:var(--bg-2);display:grid;place-items:center;
+  font-family:var(--mono);font-size:11px;color:var(--teal-ink);
+}
+.step.hot .dot{background:var(--amber);border-color:var(--amber);color:#14181e;font-weight:500}
+.step.gate .dot{background:var(--teal);border-color:var(--teal);color:#07161a;font-weight:500}
+.step .lbl{margin-top:12px;font-size:13px;font-weight:600;line-height:1.3}
+.step .who{font-family:var(--mono);font-size:11px;color:var(--text-3);margin-top:4px;letter-spacing:.04em}
+.quote{
+  font-family:var(--serif);font-size:clamp(26px,3vw,40px);line-height:1.15;max-width:22em;margin-top:44px;
+  letter-spacing:-.01em;
+}
+.quote em{color:var(--amber-ink)}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:44px}
+.rule-card{border-left:2px solid var(--teal);padding:4px 0 4px 20px}
+.rule-card h4{font-size:17px;font-weight:700;margin-bottom:6px}
+.rule-card p{color:var(--text-2);font-size:15px}
+
+/* ───────────────────────── why + loves ───────────────────────── */
+.two{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(40px,6vw,96px);align-items:start}
+.principles{display:grid;gap:4px;margin-top:44px}
+.pr{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.pr:last-child{border-bottom:1px solid var(--line)}
+.pr .n{font-family:var(--serif);font-size:40px;line-height:1;color:var(--amber-ink);font-style:italic}
+.pr h4{font-size:18px;font-weight:700;margin-bottom:6px}
+.pr p{color:var(--text-2);font-size:15.5px}
+.loves{margin-top:44px;display:grid;gap:10px}
+.love{
+  display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);
+  background:var(--surface);transition:transform .35s var(--ease),border-color .3s;
+}
+.love:hover{transform:translateX(6px);border-color:var(--line-strong)}
+.love .ico{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;color:var(--teal-ink);background:var(--teal-soft)}
+.love .ico svg{width:16px;height:16px}
+.love:nth-child(even) .ico{color:var(--amber-ink);background:var(--amber-soft)}
+.love span{font-size:15px;font-weight:500}
+.aside-note{margin-top:22px;font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.04em}
+
+/* ───────────────────────── contact ───────────────────────── */
+.contact{text-align:center;padding-bottom:40px}
+.contact .title{margin:0 auto}
+.contact .sub{margin:18px auto 0}
+.contact .cta{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:36px}
+.contact .email{display:inline-block;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--text-2);border-bottom:1px solid var(--line-strong);padding-bottom:2px}
+.contact .email:hover{color:var(--text);border-color:var(--amber)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:12px;color:var(--text-3);letter-spacing:.03em}
+footer a:hover{color:var(--text)}
+footer .sig{display:flex;align-items:center;gap:10px}
+footer .sig img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid var(--line-strong)}
+
+/* ───────────────────────── motion ───────────────────────── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .ticker .track{animation:none}
+  html{scroll-behavior:auto}
+  .card,.love,.btn,.photo .frame,.photo .outline{transition:none}
+}
+
+/* ───────────────────────── responsive ───────────────────────── */
+@media (max-width:1080px){
+  .hero .wrap{grid-template-columns:1fr;gap:48px}
+  .photo{justify-self:start;width:min(100%,420px)}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two{grid-template-columns:1fr}
+  .rules{grid-template-columns:1fr}
+  .pipe{flex-wrap:wrap;overflow:visible;row-gap:34px;padding-bottom:0}
+  .step{flex:0 0 25%;min-width:0}
+  .step:nth-child(4)::before{display:none}
+}
+@media (max-width:560px){
+  .step{flex:0 0 50%}
+  .step:nth-child(2n)::before{display:none}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .links{display:none}
+  .nav .wrap{height:62px}
+  .tbtn .lbl{display:none}
+  .tbtn{padding:0 10px}
+  .grid{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(46px,13vw,64px)}
+  .photo .badge{right:6px}
+  .pr{grid-template-columns:48px 1fr}
+  .pr .n{font-size:32px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ───────────────────────── NAV ───────────────────────── -->
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="The Woovee — home">
+      <span class="mark" aria-hidden="true">W</span>
+      <span>The Woovee</span>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#cando">What I can do</a>
+      <a href="#how">How I work</a>
+      <a href="#why">Why I build</a>
+      <a href="#hello">Say hello</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="tbtn" id="themeToggle" type="button" aria-label="Switch theme" title="Switch theme">
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <span class="lbl"></span>
+      </button>
+      <a class="btn primary" href="https://github.com/TheWoovee" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.05.78 2.12v3.15c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ───────────────────────── HERO ───────────────────────── -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow reveal">Jainullabdeen S &nbsp;—&nbsp; Doha, Qatar</div>
+      <h1 class="reveal" style="--d:.08s">I architect.<br>Agents build.<br><em>We ship.</em></h1>
+      <p class="lede reveal" style="--d:.16s">Enterprise systems engineer turned AI‑assisted product builder. Java‑grade discipline at the bottom, coding agents in the loop, and real software at the end of it — not demos.</p>
+      <div class="cta reveal" style="--d:.24s">
+        <a class="btn primary" href="https://github.com/TheWoovee" target="_blank" rel="noopener">
+          See the code on GitHub
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="btn ghost" href="mailto:jainu.saiyad@gmail.com">Say hello</a>
+      </div>
+      <div class="chips reveal" style="--d:.32s">
+        <span class="chip"><i></i>since 2009 · still going strong</span>
+        <span class="chip amber"><i></i>enterprise java at the core</span>
+        <span class="chip maroon"><i></i>ministry‑scale systems · fifa world cup 2022</span>
+        <span class="chip"><i></i>one engineer + a fleet of agents</span>
+      </div>
+    </div>
+
+    <div class="photo reveal" style="--d:.2s">
+      <div class="outline" aria-hidden="true"></div>
+      <div class="frame">
+        <img src="assets/photo.jpg" srcset="assets/photo-640.jpg 640w, assets/photo.jpg 1100w" sizes="(max-width: 1080px) 90vw, 440px" alt="Jainullabdeen S on the Doha Corniche, skyline and dhows behind him" width="1100" height="1400" fetchpriority="high">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Doha Corniche — home base</span>
+      </div>
+      <span class="badge" aria-hidden="true">that's me</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── TICKER ───────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Architect <b>✦</b></span><span>Delegate <b>✦</b></span><span>Verify <b>✦</b></span><span>Ship <b>✦</b></span><span>Repeat <b>✦</b></span>
+    <span>Architect <b>✦</b></span><span>Delegate <b>✦</b></span><span>Verify <b>✦</b></span><span>Ship <b>✦</b></span><span>Repeat <b>✦</b></span>
+    <span>Architect <b>✦</b></span><span>Delegate <b>✦</b></span><span>Verify <b>✦</b></span><span>Ship <b>✦</b></span><span>Repeat <b>✦</b></span>
+    <span>Architect <b>✦</b></span><span>Delegate <b>✦</b></span><span>Verify <b>✦</b></span><span>Ship <b>✦</b></span><span>Repeat <b>✦</b></span>
+  </div>
+</div>
+
+<!-- ───────────────────────── WHAT I CAN DO ───────────────────────── -->
+<section id="cando">
+  <div class="wrap">
+    <div class="eyebrow reveal">01 — Capabilities</div>
+    <h2 class="title reveal" style="--d:.06s">Not a résumé. <em>A range.</em></h2>
+    <p class="sub reveal" style="--d:.12s">Enterprise depth at the bottom, AI leverage on top, product sense all the way through.</p>
+
+    <div class="grid">
+      <article class="card reveal" style="--d:.05s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+          <span class="num">01</span>
+        </div>
+        <h3>Enterprise systems engineering</h3>
+        <p>Multi‑tier, business‑critical Java — service layers, persistence, messaging, application servers, integration with the legacy systems nobody wants to touch. The kind of software that has to keep running.</p>
+        <div class="tags"><span>java</span><span>spring</span><span>ejb · jpa</span><span>db2</span><span>ibm mq</span><span>websphere</span></div>
+      </article>
+
+      <article class="card accent reveal" style="--d:.1s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M8 4h8M9 14h.01M15 14h.01M2 13v3M22 13v3"/></svg></div>
+          <span class="num">02</span>
+        </div>
+        <h3>Agentic software engineering</h3>
+        <p>I run coding agents through the whole lifecycle — requirements, architecture, implementation, tests, PRs, review — as a controller with subagents, not as an autocomplete user. Provider‑neutral by design.</p>
+        <div class="tags"><span>claude code</span><span>codex</span><span>opencode</span><span>subagents</span><span>multi‑provider</span></div>
+      </article>
+
+      <article class="card reveal" style="--d:.15s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3z"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+          <span class="num">03</span>
+        </div>
+        <h3>Architecture &amp; system design</h3>
+        <p>One runtime, thin clients. Provider abstraction. Clear boundaries, audit trails, rollback paths. Designed so the next platform is easier — not a rewrite.</p>
+        <div class="tags"><span>runtime + cli/tui/gui</span><span>integration layers</span><span>multi‑platform first</span><span>traceability</span></div>
+      </article>
+
+      <article class="card reveal" style="--d:.2s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <span class="num">04</span>
+        </div>
+        <h3>Quality &amp; release engineering</h3>
+        <p>Targeted tests, then integration, then a release gate, then full regression — in that order, for a reason. Hundreds of automated tests, and real manual QA against real providers anyway. Evidence, not vibes.</p>
+        <div class="tags"><span>tdd</span><span>integration qa</span><span>release gates</span><span>git · pr flow</span><span>sonarqube</span><span>authorized security testing</span></div>
+      </article>
+
+      <article class="card accent reveal" style="--d:.25s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div>
+          <span class="num">05</span>
+        </div>
+        <h3>Product thinking, cost‑first</h3>
+        <p>What exists? What do users complain about? What's missing? Can it run nearly free until people show up — and how does it make money after? I'd rather ship real software than an LLM behind a webpage.</p>
+        <div class="tags"><span>competitor analysis</span><span>free‑tier infra</span><span>cloudflare · serverless</span><span>pricing</span></div>
+      </article>
+
+      <article class="card reveal" style="--d:.3s">
+        <div class="head">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="11" rx="2"/><rect x="17" y="9" width="5" height="11" rx="1.5"/><path d="M6 20h6M9 15v5"/></svg></div>
+          <span class="num">06</span>
+        </div>
+        <h3>Multi‑platform building</h3>
+        <p>Windows desktop, web, Android &amp; TV, keyboard‑first terminal UIs, games — and the AI‑generated images, video and 3D assets they need — from one architecture, not six codebases.</p>
+        <div class="tags"><span>desktop</span><span>web</span><span>android · tv</span><span>tui</span><span>games</span><span>generative assets</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── HOW I WORK ───────────────────────── -->
+<section id="how" class="how">
+  <div class="wrap">
+    <div class="eyebrow reveal">02 — Operating model</div>
+    <h2 class="title reveal" style="--d:.06s">I define the system.<br>Agents do the typing.<br><em>I own the outcome.</em></h2>
+
+    <div class="pipe reveal" style="--d:.12s" role="list" aria-label="Delivery pipeline">
+      <div class="step" role="listitem"><div class="dot">01</div><div class="lbl">Requirement</div><div class="who">me</div></div>
+      <div class="step" role="listitem"><div class="dot">02</div><div class="lbl">Architecture</div><div class="who">me</div></div>
+      <div class="step" role="listitem"><div class="dot">03</div><div class="lbl">PR plan &amp; order</div><div class="who">me</div></div>
+      <div class="step hot" role="listitem"><div class="dot">04</div><div class="lbl">Agents implement</div><div class="who">controller + subagents</div></div>
+      <div class="step" role="listitem"><div class="dot">05</div><div class="lbl">Targeted tests</div><div class="who">per PR</div></div>
+      <div class="step" role="listitem"><div class="dot">06</div><div class="lbl">Integration</div><div class="who">per merge</div></div>
+      <div class="step gate" role="listitem"><div class="dot">07</div><div class="lbl">Release gate</div><div class="who">full regression</div></div>
+      <div class="step" role="listitem"><div class="dot">08</div><div class="lbl">Main</div><div class="who">shipped</div></div>
+    </div>
+
+    <div class="rules">
+      <div class="rule-card reveal" style="--d:.05s">
+        <h4>Scope every PR.</h4>
+        <p>Requirement → backlog → PR plan → PR order. Agents get a defined scope and a traceable brief — never the whole repository.</p>
+      </div>
+      <div class="rule-card reveal" style="--d:.12s">
+        <h4>Don't rerun the world.</h4>
+        <p>Targeted tests per PR, integration QA per merge, full regression at the gate. Fast where it's safe, thorough where it counts.</p>
+      </div>
+      <div class="rule-card reveal" style="--d:.19s">
+        <h4>Mocks aren't proof.</h4>
+        <p>Green suites are the start. Then real QA against real providers — auth, models, tools, sessions, and the failure paths.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── WHY + LOVES ───────────────────────── -->
+<section id="why">
+  <div class="wrap two">
+    <div>
+      <div class="eyebrow reveal">03 — Why I build</div>
+      <h2 class="title reveal" style="--d:.06s">What gets me up <em>in the morning.</em></h2>
+      <div class="principles">
+        <div class="pr reveal" style="--d:.05s">
+          <div class="n">i.</div>
+          <div><h4>Leverage</h4><p>One experienced engineer can now ship what used to take a team — if they know exactly what to ask for, and how to check the answer.</p></div>
+        </div>
+        <div class="pr reveal" style="--d:.1s">
+          <div class="n">ii.</div>
+          <div><h4>Real software</h4><p>Not an LLM behind a webpage for ten dollars a month. Players, engines, tools, systems — software with value of its own.</p></div>
+        </div>
+        <div class="pr reveal" style="--d:.15s">
+          <div class="n">iii.</div>
+          <div><h4>Proof</h4><p>If it isn't tested, it isn't done. Evidence beats confidence, every single time.</p></div>
+        </div>
+        <div class="pr reveal" style="--d:.2s">
+          <div class="n">iv.</div>
+          <div><h4>Frugal by design</h4><p>Free tiers, local models, open assets. Spend money after the product proves people want it.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow reveal">04 — Things I love</div>
+      <h2 class="title reveal" style="--d:.06s">Small <em>obsessions.</em></h2>
+      <div class="loves">
+        <div class="love reveal" style="--d:.05s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-5-6-5M12 19h8"/></svg></span><span>Keyboard‑first terminal UIs — a big chat area, a slim info panel, nothing in the way</span></div>
+        <div class="love reveal" style="--d:.1s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></span><span>Running models on my own machine — offline, late at night</span></div>
+        <div class="love reveal" style="--d:.15s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4M8 10v4M15 11h.01M18 13h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.6 6.8A3 3 0 0 0 5.1 19c.9 0 1.7-.4 2.2-1.1L9 16h6l1.7 1.9c.5.7 1.3 1.1 2.2 1.1a3 3 0 0 0 3-3.6l-.6-6.8a4 4 0 0 0-4-3.6z"/></svg></span><span>Building games, not just playing them</span></div>
+        <div class="love reveal" style="--d:.2s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5S7 4.6 7 6.5 9.2 10 12 10s5 1.6 5 3.5S14.8 17 12 17s-5-1.6-5-3.5"/></svg></span><span>Squeezing infrastructure down to nearly zero</span></div>
+        <div class="love reveal" style="--d:.25s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span>A test suite going green — for real, against real providers</span></div>
+        <div class="love reveal" style="--d:.3s"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20V9l4-3v14M13 20V4l6 4v12"/></svg></span><span>Doha at golden hour — the skyline across the water</span></div>
+      </div>
+      <p class="aside-note reveal" style="--d:.35s">// no projects here on purpose. the code is on github.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── CONTACT ───────────────────────── -->
+<section id="hello" class="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal" style="justify-content:center">05 — Say hello</div>
+    <h2 class="title reveal" style="--d:.06s">Let's build something <em>that lasts.</em></h2>
+    <p class="sub reveal" style="--d:.12s">Open to interesting problems, serious products, and conversations about agents that actually ship.</p>
+    <div class="cta reveal" style="--d:.18s">
+      <a class="btn primary" href="mailto:jainu.saiyad@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Email me
+      </a>
+      <a class="btn ghost" href="https://github.com/TheWoovee" target="_blank" rel="noopener">github.com/TheWoovee ↗</a>
+    </div>
+    <a class="email reveal" style="--d:.24s" href="mailto:jainu.saiyad@gmail.com">jainu.saiyad@gmail.com</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="sig"><img src="assets/avatar.jpg" alt="" width="26" height="26">Jainullabdeen S · The Woovee</span>
+    <span><a href="https://thewoovee.com">thewoovee.com</a> &nbsp;·&nbsp; <a href="https://github.com/TheWoovee" target="_blank" rel="noopener">github</a> &nbsp;·&nbsp; <a href="mailto:jainu.saiyad@gmail.com">email</a></span>
+    <span>© 2026 · Doha, Qatar</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // theme toggle
+  var root=document.documentElement, btn=document.getElementById('themeToggle');
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='ink'?'sand':'ink';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('woovee-theme',next);}catch(e){}
+  });
+  // reveal on scroll
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+</body>
+</html>
