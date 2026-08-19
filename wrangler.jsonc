@@ -8,6 +8,10 @@
     {
       "pattern": "thewoovee.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.thewoovee.com",
+      "custom_domain": true
     }
   ]
 }
