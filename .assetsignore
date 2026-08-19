@@ -8,3 +8,10 @@ README.md
 .env
 .env.*
 node_modules/
+
+# Local-only files that must never be served
+IMG_*.JPG
+IMG_*.jpg
+The Woovee Portfolio.html
+preview-*.png
+.claude/
