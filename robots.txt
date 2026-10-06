@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thewoovee.com/sitemap.xml
+Sitemap: https://thewoovee.com/bareline/sitemap.xml
